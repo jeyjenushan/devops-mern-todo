@@ -15,6 +15,7 @@ describe('GET api/tasks',()=>{
         it('it should return array ok',async()=>{
         const res=await request(app).get('/api/tasks');
         expect(res.body).toBeInstanceOf(Array);
+        console.log(res.body,"response body");
         //except(res.body).toBe("object")
         //it checks res.body sometimes object comes that scenario search task property have or not
         //expect(res.body).toHaveProperty("tasks")
