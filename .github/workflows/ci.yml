@@ -2,11 +2,11 @@ name: MERN CI
 
 on:
   push:
-    branches: [ "main" ]
-  
+    branches: ["main"]
+
 jobs:
   test:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     env:
       PORT: ${{ secrets.PORT }}
       MONGO_URI: ${{ secrets.MONGO_URI }}
@@ -14,12 +14,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-    
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
           cache-dependency-path: ./backend/package-lock.json
 
       - name: Install Dependencies for backend
