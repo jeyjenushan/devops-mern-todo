@@ -2,21 +2,23 @@ name: MERN CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Deploy via ssh
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          cd devops-mern-todo/
-          git pull origin main
-          docker-compose down
-          docker-compose up -d --build
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy via ssh
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd devops-mern-todo/
+            git pull origin main
+            docker-compose down
+            docker-compose up -d --build
